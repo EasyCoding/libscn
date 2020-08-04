@@ -1,0 +1,51 @@
+From af719f2df43e9bc3002946867d3514f539e080c3 Mon Sep 17 00:00:00 2001
+From: Vitaly Zaitsev <vitaly@easycoding.org>
+Date: Tue, 4 Aug 2020 11:03:50 +0200
+Subject: [PATCH] Fixed running tests against packaged version of doctest.
+
+Signed-off-by: Vitaly Zaitsev <vitaly@easycoding.org>
+---
+ test/CMakeLists.txt | 16 +++++++++++-----
+ test/test.h         |  2 +-
+ 2 files changed, 12 insertions(+), 6 deletions(-)
+
+diff --git a/test/CMakeLists.txt b/test/CMakeLists.txt
+index 4642cee..356a89e 100644
+--- a/test/CMakeLists.txt
++++ b/test/CMakeLists.txt
+@@ -1,11 +1,17 @@
+-message(STATUS "Installing doctest submodule")
+-execute_process(COMMAND git submodule update --init -- doctest
+-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+-
+ include(CTest)
+ 
+ add_library(tests-base INTERFACE)
+-target_include_directories(tests-base SYSTEM INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/doctest/doctest)
++
++find_package(doctest QUIET)
++if (NOT doctest_FOUND)
++    message(STATUS "Installing doctest submodule")
++    execute_process(COMMAND git submodule update --init -- doctest
++        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
++    target_include_directories(tests-base SYSTEM INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/doctest)
++else()
++    target_link_libraries(tests-base INTERFACE doctest::doctest)
++endif()
++
+ if (NOT SCN_USE_EXCEPTIONS)
+     target_compile_definitions(tests-base INTERFACE -DDOCTEST_CONFIG_NO_EXCEPTIONS_BUT_WITH_ALL_ASSERTS=1)
+ endif()
+diff --git a/test/test.h b/test/test.h
+index 0d566c4..19cf109 100644
+--- a/test/test.h
++++ b/test/test.h
+@@ -15,7 +15,7 @@
+ // This file is a part of scnlib:
+ //     https://github.com/eliaskosunen/scnlib
+ 
+-#include <doctest.h>
++#include <doctest/doctest.h>
+ #include <scn/scn.h>
+ #include <algorithm>
+ #include <array>
