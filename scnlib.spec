@@ -18,16 +18,16 @@ BuildRequires: gcc-c++
 BuildRequires: cmake
 
 # https://github.com/eliaskosunen/scnlib/pull/30
-Patch100: scnlib-fix-doctest.patch
+Patch100: %{name}-fix-doctest.patch
 
 # https://github.com/eliaskosunen/scnlib/pull/31
-Patch101: scnlib-fix-benchmark.patch
+Patch101: %{name}-fix-benchmark.patch
 
 # https://github.com/eliaskosunen/scnlib/pull/32
-Patch102: scnlib-add-soversion.patch
+Patch102: %{name}-add-soversion.patch
 
 %description
-scnlib is a modern C++ library for replacing scanf and std::istream.
+%{name} is a modern C++ library for replacing scanf and std::istream.
 
 This library attempts to move us ever so closer to replacing iostreams
 and C stdio altogether. It's faster than iostream (see Benchmarks) and
