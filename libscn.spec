@@ -1,14 +1,14 @@
 %undefine __cmake_in_source_build
 %global intname scn
-%global libname lib%{intname}
+%global upname %{intname}lib
 
-Name: scnlib
+Name: libscn
 Version: 0.3
 Release: 1%{?dist}
 
 License: ASL 2.0
 Summary: Library for replacing scanf and std::istream
-URL: https://github.com/eliaskosunen/%{name}
+URL: https://github.com/eliaskosunen/%{upname}
 Source0: %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires: google-benchmark-devel
@@ -27,7 +27,7 @@ Patch101: %{name}-fix-benchmark.patch
 Patch102: %{name}-add-soversion.patch
 
 %description
-%{name} is a modern C++ library for replacing scanf and std::istream.
+%{upname} is a modern C++ library for replacing scanf and std::istream.
 
 This library attempts to move us ever so closer to replacing iostreams
 and C stdio altogether. It's faster than iostream (see Benchmarks) and
@@ -44,7 +44,7 @@ Requires: %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 %{summary}.
 
 %prep
-%autosetup -p1
+%autosetup -n %{upname}-%{version} -p1
 
 %build
 %cmake -G Ninja \
@@ -67,12 +67,12 @@ rm -rf %{buildroot}%{_datadir}/%{intname}
 %files
 %doc README.md
 %license LICENSE
-%{_libdir}/%{libname}.so.0*
+%{_libdir}/%{name}.so.0*
 
 %files devel
 %{_includedir}/%{intname}/
 %{_libdir}/cmake/%{intname}/
-%{_libdir}/%{libname}.so
+%{_libdir}/%{name}.so
 
 %changelog
 * Tue Aug 04 2020 Vitaly Zaitsev <vitaly@easycoding.org> - 0.3-1
