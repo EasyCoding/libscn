@@ -29,6 +29,9 @@ Patch102: %{name}-add-soversion.patch
 # https://github.com/eliaskosunen/scnlib/pull/33
 Patch103: %{name}-fix-version.patch
 
+# https://github.com/eliaskosunen/scnlib/pull/34
+Patch104: %{name}-fix-library-destination.patch
+
 %description
 %{upname} is a modern C++ library for replacing scanf and std::istream.
 
