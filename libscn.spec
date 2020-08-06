@@ -4,7 +4,7 @@
 
 Name: libscn
 Version: 0.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: ASL 2.0
 Summary: Library for replacing scanf and std::istream
@@ -81,5 +81,8 @@ rm -rf %{buildroot}%{_datadir}/%{intname}
 %{_libdir}/%{name}.so
 
 %changelog
+* Thu Aug 06 2020 Vitaly Zaitsev <vitaly@easycoding.org> - 0.3-2
+- Added patch with library destination fixes.
+
 * Tue Aug 04 2020 Vitaly Zaitsev <vitaly@easycoding.org> - 0.3-1
 - Initial SPEC release.
