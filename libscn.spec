@@ -3,8 +3,8 @@
 %global upname %{intname}lib
 
 Name: libscn
-Version: 0.3
-Release: 2%{?dist}
+Version: 0.4
+Release: 1%{?dist}
 
 License: ASL 2.0
 Summary: Library for replacing scanf and std::istream
@@ -16,21 +16,6 @@ BuildRequires: doctest-devel
 BuildRequires: ninja-build
 BuildRequires: gcc-c++
 BuildRequires: cmake
-
-# https://github.com/eliaskosunen/scnlib/pull/30
-Patch100: %{name}-fix-doctest.patch
-
-# https://github.com/eliaskosunen/scnlib/pull/31
-Patch101: %{name}-fix-benchmark.patch
-
-# https://github.com/eliaskosunen/scnlib/pull/32
-Patch102: %{name}-add-soversion.patch
-
-# https://github.com/eliaskosunen/scnlib/pull/33
-Patch103: %{name}-fix-version.patch
-
-# https://github.com/eliaskosunen/scnlib/pull/34
-Patch104: %{name}-fix-library-destination.patch
 
 %description
 %{upname} is a modern C++ library for replacing scanf and std::istream.
@@ -81,6 +66,9 @@ rm -rf %{buildroot}%{_datadir}/%{intname}
 %{_libdir}/%{name}.so
 
 %changelog
+* Sun Jan 31 2021 Vitaly Zaitsev <vitaly@easycoding.org> - 0.4-1
+- Updated to version 0.4.
+
 * Thu Aug 06 2020 Vitaly Zaitsev <vitaly@easycoding.org> - 0.3-2
 - Added patch with library destination fixes.
 
