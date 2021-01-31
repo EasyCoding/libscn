@@ -69,6 +69,9 @@ rm -rf %{buildroot}%{_datadir}/%{intname}
 * Sun Jan 31 2021 Vitaly Zaitsev <vitaly@easycoding.org> - 0.4-1
 - Updated to version 0.4.
 
+* Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 0.3-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
+
 * Thu Aug 06 2020 Vitaly Zaitsev <vitaly@easycoding.org> - 0.3-2
 - Added patch with library destination fixes.
 
